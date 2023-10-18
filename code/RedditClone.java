@@ -116,4 +116,9 @@ public class RedditClone {
         }
         return allComments;
     }
+
+    // Get all registered users
+    public List<User> getRegisteredUsers() {
+        return loginSystem.getRegisteredUsers();
+    }
 }
