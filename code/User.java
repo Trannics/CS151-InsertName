@@ -6,6 +6,7 @@ public class User {
     private String password;
     private List<Post> posts;
     private List<Comment> comments;
+    private Date createdDate;
 
     // Constructor to create a User with a username and password
     public User(String name, String password) {
@@ -13,6 +14,7 @@ public class User {
         this.password = password;
         posts = new ArrayList<>();
         comments = new ArrayList<>();
+        createdDate = new Date();
     }
 
     // Get the username of the user
@@ -63,6 +65,11 @@ public class User {
     // Add a comment to the user's list of comments
     public void addComment(Comment comment) {
         comments.add(comment);
+    }
+
+    // Get the created date of the user
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
     // Calculate and return the user's karma based on post and comment votes
