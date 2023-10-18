@@ -3,28 +3,28 @@ This is an overview of the project structure and a breakdown of how various clas
 
 ## Class Responsibilities
 
-# 'Login'
+### 'Login'
 * This class is responsible for managing user authentication and user creation.
 * It stores a list of '**User**' objects.
 * '**authenticate**' method checks if a given username and password match any existing user's credentials.
 * '**createUser**' method allows creating a new user.
 * ‘**deleteUser**’ method removes an existing user from the system.
 
-# 'Vote'
+### 'Vote'
 * This class handles the voting mechanism for posts and comments.
 * It tracks the number of upvotes and downvotes for a particular post or comment.
 * '**getUpvotes**' and '**getDownvotes**' methods return the respective counts.
 * '**upvote**' and '**downvote**' methods increment the upvotes and downvotes.
 * '**getKarma**' returns the difference between upvotes and downvotes for a post or comment, which represents its overall karma.
 
-# 'Post'
+### 'Post'
 * Represents a post that can be created by a user.
 * Stores post-related information such as the title, content, author, creation date, comments, and vote counts.
 * Users can upvote and downvote posts.
 * '**addComment**' method allows adding comments to the post.
 * '**getKarma**' calculates and returns the post's karma based on its upvotes and downvotes. * ‘**deletePost**’ method removes a post from the system
 
-# 'User'
+### 'User'
 * Represents a user with a username, password, and a list of posts and comments.
 * Users can update their username or delete their account.
 * The '**getPosts**' and '**getComments**' methods return the user's posts and comments sorted by their creation date.
@@ -32,7 +32,7 @@ This is an overview of the project structure and a breakdown of how various clas
 * '**getKarma**' calculates and returns the user's karma based on the karma of their posts and comments.
 * ‘**deleteUser**’ method deletes a user account and removes associated posts and comments.
 
-# 'Comment'
+### 'Comment'
 * Represents a comment made by a user on a post or another comment.
 * Stores the comment text, author, creation date, and vote counts.
 * Users can upvote and downvote comments.
