@@ -34,4 +34,10 @@ public class Login {
             }
         }
     }
+
+    // Get a date sorted list of registered users
+    public List<User> getRegisteredUsers() {
+        users.sort(Comparator.comparing(User::getCreatedDate));
+        return users;
+    }
 }
