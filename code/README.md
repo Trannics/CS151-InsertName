@@ -9,6 +9,7 @@ This is an overview of the project structure and a breakdown of how various clas
 * '**authenticate**' method checks if a given username and password match any existing user's credentials.
 * '**createUser**' method allows creating a new user.
 * ‘**deleteUser**’ method removes an existing user from the system.
+* '**getRegisteredUsers**' method returns a list of registered users sorted by their creation date
 
 ### 'Vote'
 * This class handles the voting mechanism for posts and comments.
