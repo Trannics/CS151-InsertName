@@ -41,8 +41,8 @@ public class User {
     public void deleteUser() {
         userName = null;
         password = null;
-        posts.clear();
-        comments.clear();
+        posts = new ArrayList<>();
+        comments = new ArrayList<>();
     }
 
     // Get a sorted list of posts created by the user
@@ -82,5 +82,29 @@ public class User {
             karma += comment.getKarma();
         }
         return karma;
+    }
+
+    // Get a sorted list of posts created by the user based on date
+    public List<Post> getPostsByDate() {
+        posts.sort(Comparator.comparing(Post::getCreatedDate));
+        return posts;
+    }
+
+    // Get a sorted list of comments created by the user based on date
+    public List<Comment> getCommentsByDate() {
+        comments.sort(Comparator.comparing(Comment::getCreatedDate));
+        return comments;
+    }
+
+    // Get a sorted list of posts created by the user based on karma
+    public List<Post> getPostsByKarma() {
+        posts.sort(Comparator.comparing(Post::getKarma).reversed());
+        return posts;
+    }
+
+    // Get a sorted list of comments created by the user based on karma
+    public List<Comment> getCommentsByKarma() {
+        comments.sort(Comparator.comparing(Comment::getKarma).reversed());
+        return comments;
     }
 }

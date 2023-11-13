@@ -11,7 +11,7 @@ public class Login {
 
     // Authenticate a user with a given username and password. Returns the authenticated user or null if not found
     public User authenticate(String username, String password) {
-        for (User user : users) {
+        for (User user: users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user;
             }
@@ -28,9 +28,10 @@ public class Login {
 
     // Delete an existing user with the given username and password and removes the user from the list of users
     public void deleteUser(String username, String password) {
-        for (User user : users) {
+        for (User user: users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 users.remove(user);
+                return;
             }
         }
     }

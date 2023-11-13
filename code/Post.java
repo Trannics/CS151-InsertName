@@ -21,12 +21,12 @@ public class Post {
 
     // Delete the post
     public void deletePost() {
-        title = null;
+        title = "This post has been deleted by the user.";
         content = null;
         author = null;
         createdDate = null;
-        comments = null;
-        vote = null;
+        comments = new ArrayList<>();
+        vote = new Vote();
     }
 
     // Get the title of the post
@@ -70,17 +70,29 @@ public class Post {
     }
 
     // Upvote the post
-    public void upvote() {
-        vote.upvote();
+    public void upvote(User user) {
+        vote.upvote(user);
     }
 
     // Downvote the post
-    public void downvote() {
-        vote.downvote();
+    public void downvote(User user) {
+        vote.downvote(user);
     }
 
     // Get the karma of the post
     public int getKarma() {
         return vote.getKarma();
+    }
+
+    // Get a sorted list of comments associated with the post based on date
+    public List<Comment> getCommentsByDate() {
+        comments.sort(Comparator.comparing(Comment::getCreatedDate));
+        return comments;
+    }
+
+    // Get a sorted list of comments associated with the post based on karma
+    public List<Comment> getCommentsByKarma() {
+        comments.sort(Comparator.comparing(Comment::getKarma).reversed());
+        return comments;
     }
 }

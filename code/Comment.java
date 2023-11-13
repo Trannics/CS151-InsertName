@@ -32,13 +32,13 @@ public class Comment {
 
     // Delete the comment
     public void deleteComment() {
-        text = null;
+        text = "This comment has been deleted by the user.";
         author = null;
         createdDate = null;
         parentComment = null;
-        subComments = null;
+        subComments = new ArrayList<>();
         parentPost = null;
-        vote = null;
+        vote = new Vote();
     }
 
     // Add subcomment to parent comment
@@ -87,17 +87,29 @@ public class Comment {
     }
 
     // Upvote the comment
-    public void upvote() {
-        vote.upvote();
+    public void upvote(User user) {
+        vote.upvote(user);
     }
 
     // Downvote the comment
-    public void downvote() {
-        vote.downvote();
+    public void downvote(User user) {
+        vote.downvote(user);
     }
 
     // Get the karma of the comment
     public int getKarma() {
         return vote.getKarma();
+    }
+
+    // Get a sorted list of subcomments based on date
+    public List<Comment> getSubCommentsByDate() {
+        subComments.sort(Comparator.comparing(Comment::getCreatedDate));
+        return subComments;
+    }
+
+    // Get a sorted list of subcomments based on karma
+    public List<Comment> getSubCommentsByKarma() {
+        subComments.sort(Comparator.comparing(Comment::getKarma).reversed());
+        return subComments;
     }
 }
