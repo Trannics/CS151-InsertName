@@ -160,9 +160,14 @@ public class RedditClone {
         return allComments;
     }
 
-    // Get all registered users
-    public List<User> getRegisteredUsers() {
-        return loginSystem.getRegisteredUsers();
+    // Get all registered users based on date
+    public List<User> getUsersByDate() {
+        return loginSystem.getUsersByDate();
+    }
+
+    // Get all registered users based on karma
+    public List<User> getUsersByKarma() {
+        return loginSystem.getUsersByKarma();
     }
 
     // Get a sorted list of posts based on date

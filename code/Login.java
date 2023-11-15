@@ -37,8 +37,14 @@ public class Login {
     }
 
     // Get a date sorted list of registered users
-    public List<User> getRegisteredUsers() {
+    public List<User> getUsersByDate() {
         users.sort(Comparator.comparing(User::getCreatedDate));
+        return users;
+    }
+
+    // Get a Karma sorted list of registered users
+    public List<User> getUsersByKarma() {
+        users.sort(Comparator.comparing(User::getKarma));
         return users;
     }
 }

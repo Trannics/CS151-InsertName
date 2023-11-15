@@ -18,7 +18,8 @@ Look for '**NEW**' to find newly created or updated methods for the most recent 
 * '**authenticate**' method checks if a given username and password match any existing user's credentials.
 * '**createUser**' method allows creating a new user.
 * ‘**deleteUser**’ method removes an existing user from the system.
-* '**getRegisteredUsers**' method returns a list of registered users sorted by their creation date
+* '**getUserByDate**' method returns a list of registered users sorted by their creation date
+*  **NEW** - '**getUserByKarma**' method returns a list of registered users sorted by their karma
 
 ### 'Vote'
 * This class handles the voting mechanism for posts and comments.

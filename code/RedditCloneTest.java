@@ -109,14 +109,29 @@ class RedditCloneTest {
     }
 
     @Test
-    void testGetRegisteredUsers() {
+    void testGetRegisteredUsersDate() {
         RedditClone redditClone = new RedditClone();
         User user1 = redditClone.createUser("user1", "password1");
         User user2 = redditClone.createUser("user2", "password2");
-        List<User> registeredUsers = redditClone.getRegisteredUsers();
+        List<User> registeredUsers = redditClone.getUsersByDate();
         assertEquals(2, registeredUsers.size());
         assertEquals("user1", registeredUsers.get(0).getUsername());
         assertEquals("user2", registeredUsers.get(1).getUsername());
+
+    }
+
+    @Test
+    void testGetRegisteredUsersKarma() {
+        RedditClone redditClone = new RedditClone();
+        User user1 = redditClone.createUser("user1", "password1");
+        User user2 = redditClone.createUser("user2", "password2");
+        redditClone.login("user1", "password1");
+        Post post = redditClone.createPost("Test Post", "This is a test post.");
+        post.upvote(user1);
+        List<User> registeredUsers = redditClone.getUsersByKarma();
+        assertEquals(2, registeredUsers.size());
+        assertEquals("user2", registeredUsers.get(0).getUsername());
+        assertEquals("user1", registeredUsers.get(1).getUsername());
     }
 
     @Test
@@ -127,7 +142,7 @@ class RedditCloneTest {
         redditClone.createPost("Test Post", "This is a test post.");
         redditClone.deleteUser();
         assertNull(redditClone.getLoggedInUser());
-        assertEquals(0, redditClone.getRegisteredUsers().size());
+        assertEquals(0, redditClone.getUsersByDate().size());
         assertEquals(0, user.getPosts().size());
     }
 
