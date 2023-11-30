@@ -53,19 +53,19 @@ public class RedditClone {
     }
 
     // Create a new comment on a post or another comment
-    public Comment createComment(User user, String text, Post parentPost, Comment parentComment) {
+    public Comment createComment(String text, Post parentPost, Comment parentComment) {
         if (loggedInUser != null) {
             Comment comment;
             if (parentPost != null) {
-                comment = new Comment(text, user, parentPost);
+                comment = new Comment(text, loggedInUser, parentPost);
                 parentPost.addComment(comment);
             } else if (parentComment != null) {
-                comment = new Comment(text, user, parentComment);
+                comment = new Comment(text, loggedInUser, parentComment);
                 parentComment.addComment(comment);
             } else {
                 return null;
             }
-            user.addComment(comment);
+            loggedInUser.addComment(comment);
             return comment;
         }
         return null;

@@ -41,20 +41,9 @@ public class User {
     public void deleteUser() {
         userName = null;
         password = null;
+        createdDate = null;
         posts = new ArrayList<>();
         comments = new ArrayList<>();
-    }
-
-    // Get a sorted list of posts created by the user
-    public List<Post> getPosts() {
-        posts.sort(Comparator.comparing(Post::getCreatedDate));
-        return posts;
-    }
-
-    // Get a sorted list of comments created by the user
-    public List<Comment> getComments() {
-        comments.sort(Comparator.comparing(Comment::getCreatedDate));
-        return comments;
     }
 
     // Add a post to the user's list of posts
