@@ -704,7 +704,6 @@ public class JavaFX extends Application {
     @Override
     public void start(Stage stage) {
         redditClone = new RedditClone();
-        redditClone.createUser("Bob", "password");
         this.stage = stage;
         stage.setResizable(false);
         stage.setScene(createSceneHome());
