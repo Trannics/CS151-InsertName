@@ -1,3 +1,5 @@
+package com.example.cs151finalcode;
+
 import java.util.*;
 
 // Post class represents a user's post with title, content, and comments
@@ -86,7 +88,7 @@ public class Post {
 
     // Get a sorted list of comments associated with the post based on date
     public List<Comment> getCommentsByDate() {
-        comments.sort(Comparator.comparing(Comment::getCreatedDate));
+        comments.sort(Comparator.comparing(Comment::getCreatedDate).reversed());
         return comments;
     }
 

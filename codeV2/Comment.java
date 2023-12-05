@@ -1,3 +1,5 @@
+package com.example.cs151finalcode;
+
 import java.util.*;
 
 // Comment class represents a user's comment on a post or another comment

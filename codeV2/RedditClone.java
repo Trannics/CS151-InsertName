@@ -1,3 +1,5 @@
+package com.example.cs151finalcode;
+
 import java.util.*;
 
 public class RedditClone {
@@ -9,6 +11,11 @@ public class RedditClone {
         loginSystem = new Login();
         loggedInUser = null;
         posts = new ArrayList<>();
+    }
+
+    // Checks if an input username already exists
+    public boolean checksUsername(String username) {
+        return loginSystem.checksUsername(username);
     }
 
     // Create a new user and add them to the system
@@ -139,6 +146,17 @@ public class RedditClone {
         }
     }
 
+    // Get karma of a post
+    public int getKarma(String title) {
+        int karma = 0;
+        for (Post post : posts) {
+            if (post.getTitle().equals(title)) {
+                karma = post.getKarma();
+            }
+        }
+        return karma;
+    }
+
     // Get the content of a post by title
     public String getPostContent(String title) {
         for (Post post: posts) {
@@ -172,7 +190,7 @@ public class RedditClone {
 
     // Get a sorted list of posts based on date
     public List<Post> getPostsByDate() {
-        posts.sort(Comparator.comparing(Post::getCreatedDate));
+        posts.sort(Comparator.comparing(Post::getCreatedDate).reversed());
         return posts;
     }
 

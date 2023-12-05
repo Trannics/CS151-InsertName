@@ -39,7 +39,7 @@ class RedditCloneTest {
         User user = redditClone.createUser("testUser", "password");
         redditClone.login("testUser", "password");
         Post post = redditClone.createPost("Test Post", "This is a test post.");
-        Comment comment = redditClone.createComment(user, "Test Comment", post, null);
+        Comment comment = redditClone.createComment("Test Comment", post, null);
         assertNotNull(comment);
         assertEquals("Test Comment", comment.getText());
     }
@@ -70,7 +70,7 @@ class RedditCloneTest {
         User user = redditClone.createUser("testUser", "password");
         redditClone.login("testUser", "password");
         Post post = redditClone.createPost("Test Post", "This is a test post.");
-        Comment comment = redditClone.createComment(user, "Test Comment", post, null);
+        Comment comment = redditClone.createComment("Test Comment", post, null);
         redditClone.upvoteComment(comment);
         assertEquals(1, comment.getKarma());
     }
@@ -81,7 +81,7 @@ class RedditCloneTest {
         User user = redditClone.createUser("testUser", "password");
         redditClone.login("testUser", "password");
         Post post = redditClone.createPost("Test Post", "This is a test post.");
-        Comment comment = redditClone.createComment(user, "Test Comment", post, null);
+        Comment comment = redditClone.createComment("Test Comment", post, null);
         redditClone.downvoteComment(comment);
         assertEquals(-1, comment.getKarma());
     }
@@ -102,7 +102,7 @@ class RedditCloneTest {
         User user = redditClone.createUser("testUser", "password");
         redditClone.login("testUser", "password");
         Post post = redditClone.createPost("Test Post", "This is a test post.");
-        Comment comment = redditClone.createComment(user, "Test Comment", post, null);
+        Comment comment = redditClone.createComment("Test Comment", post, null);
         List<Comment> comments = redditClone.getPostComments("Test Post");
         assertEquals(1, comments.size());
         assertEquals("Test Comment", comments.get(0).getText());
@@ -143,7 +143,7 @@ class RedditCloneTest {
         redditClone.deleteUser();
         assertNull(redditClone.getLoggedInUser());
         assertEquals(0, redditClone.getUsersByDate().size());
-        assertEquals(0, user.getPosts().size());
+        assertEquals(0, user.getPostsByDate().size());
     }
 
     @Test
@@ -164,7 +164,7 @@ class RedditCloneTest {
         User user = redditClone.createUser("testUser", "password");
         redditClone.login("testUser", "password");
         Post post = redditClone.createPost("Test Post", "This is a test post.");
-        Comment comment = redditClone.createComment(user, "Test Comment", post, null);
+        Comment comment = redditClone.createComment("Test Comment", post, null);
         redditClone.updateComment(comment, "Updated Comment");
         assertEquals("Updated Comment", comment.getText());
     }
@@ -190,7 +190,7 @@ class RedditCloneTest {
         User user = redditClone.createUser("testUser", "password");
         redditClone.login("testUser", "password");
         Post post = redditClone.createPost("Test Post", "This is a test post.");
-        Comment comment = redditClone.createComment(user, "Test Comment", post, null);
+        Comment comment = redditClone.createComment("Test Comment", post, null);
         redditClone.deleteComment(comment);
         assertEquals("This comment has been deleted by the user.", comment.getText());
         assertNull(comment.getAuthor());

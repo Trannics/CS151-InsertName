@@ -1,3 +1,5 @@
+package com.example.cs151finalcode;
+
 import java.util.*;
 
 // User class represents a user with a username and password

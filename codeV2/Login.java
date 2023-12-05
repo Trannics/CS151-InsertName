@@ -1,3 +1,5 @@
+package com.example.cs151finalcode;
+
 import java.util.*;
 
 // Login class represents user authentication and user creation
@@ -17,6 +19,16 @@ public class Login {
             }
         }
         return null;
+    }
+
+    // Checks if an input username already exists
+    public boolean checksUsername(String username) {
+        for (User user: users) {
+            if (user.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Create a new user with the given username and password and adds the user to the list of users and returns the created user

@@ -1,3 +1,5 @@
+package com.example.cs151finalcode;
+
 import java.util.*;
 
 // Vote class represents upvotes and downvotes for a post or comment
