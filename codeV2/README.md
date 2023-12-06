@@ -59,11 +59,17 @@ Look for '**NEW**' to find newly created or updated methods for the most recent 
 
 ### 'JavaFX'
 * Manages tthe graphical user interface using JavaFX
-* User Authenticatiion: Provides a graphical user interface for user login and creation
-* Post and Comment Presentation: Displays post and comments with voting mechanisms and karma
-* User Interaction: Allows users to actively upvote and downvote posts and comments
 * User Profile Display: Shows user profiles with information such as karma, posts, and comments
-* Menu Nacigation: Manages the navigation between different scenes such as the homepage and detailed post/comment views
+* User Interaction: Allows users to actively upvote and downvote posts and comments
+* '**createSceneLogin**' Provides a graphical user interface for user login and creation
+* '**createSceneDetailed**' and  '**createCommentVisual**' Displays post and comments with voting mechanisms and karma
+* '**createSceneDetailedCommentByKarma**' shows detailed comment view with karma
+* '**createScenePostCreation**' creates scene for users to create posts
+* '**createSceneHome**' creates scene for homepage
+* '**createPostVisual**' creates Vbox for posts
+* '**createCommentVisual**' creates Vbox for comments
+* '**switchScenes**' method to navigate between scenes
+
 
 ## Overall Driving Class
 '**RedditClone**' is the overall driving class that manages the core functionalities, including user authentication, content creation, and voting. This class provides methods for user login, logout, and creating, deleting, and interacting with posts and comments.
