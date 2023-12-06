@@ -2,7 +2,7 @@
 This is an overview of the project structure and a breakdown of how various classes interact with each other. The code written includes five main classes: '**Login**', '**Vote**', '**Post**', '**User**', '**Comment**', and '**JavaFX**'. These classes interact to create a simple system for user authentication, voting, and content creation, including posts and comments.
 
 ## NOTICE
-All code must be copied to a new JavaFX project in order for JavaFX to function correctly
+All classes in this directory must be copied to a new JavaFX project in order for JavaFX to function correctly
 
 ## Recent Changelog
 * '**JavaFX**' class adds a UI that includes a Login Scene, Home Scene, Post Creation Scene, Detailed Post View Scene, and Navigation of these scenes
