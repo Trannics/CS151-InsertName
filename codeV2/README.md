@@ -1,6 +1,9 @@
 # Project Structure
 This is an overview of the project structure and a breakdown of how various classes interact with each other. The code written includes five main classes: '**Login**', '**Vote**', '**Post**', '**User**', '**Comment**', and '**JavaFX**'. These classes interact to create a simple system for user authentication, voting, and content creation, including posts and comments.
 
+## NOTICE
+All code must be copied to a new JavaFX project in order for JavaFX to function correctly
+
 ## Recent Changelog
 * '**JavaFX**' class adds a UI that includes a Login Scene, Home Scene, Post Creation Scene, Detailed Post View Scene, and Navigation of these scenes
 * Code logic fixes (Bug fixes)
@@ -62,7 +65,7 @@ Look for '**NEW**' to find newly created or updated methods for the most recent 
 * '**getSubCommentsByDate**' and '**getSubCommentsByKarma**' methods get a sorted list of sub comments based on either date or karma
 
 ### 'JavaFX'
-* Manages tthe graphical user interface using JavaFX
+* Manages the graphical user interface using JavaFX
 * User Profile Display: Shows user profiles with information such as karma, posts, and comments
 * User Interaction: Allows users to actively upvote and downvote posts and comments
 * **NEW** - '**createSceneLogin**' Provides a graphical user interface for user login and creation
