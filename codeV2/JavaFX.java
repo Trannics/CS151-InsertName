@@ -477,6 +477,10 @@ public class JavaFX extends Application {
             stage.setScene(createSceneUsersByKarma());
         });
 
+        redditText.setOnMouseClicked(event -> {
+            stage.setScene(createSceneHome());
+        });
+
         scrollPane.setContent(gridPane);
         layout.setCenter(scrollPane);
         layout.setTop(toolBar);
@@ -566,6 +570,10 @@ public class JavaFX extends Application {
 
         sortTime.setOnMouseClicked(event -> {
             stage.setScene(createSceneUsers());
+        });
+
+        redditText.setOnMouseClicked(event -> {
+            stage.setScene(createSceneHome());
         });
 
         scrollPane.setContent(gridPane);
