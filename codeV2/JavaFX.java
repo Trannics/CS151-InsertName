@@ -235,7 +235,7 @@ public class JavaFX extends Application {
             toolBar.getItems().add(login);
         }
         userText.setTextAlignment(TextAlignment.RIGHT);
-        toolBar.setStyle("-fx-spacing: 20px");
+        toolBar.setStyle("-fx-spacing: 40px");
 
         ScrollPane scrollPane = new ScrollPane();
         GridPane gridPane = new GridPane();
@@ -337,7 +337,7 @@ public class JavaFX extends Application {
             toolBar.getItems().add(login);
         }
         userText.setTextAlignment(TextAlignment.RIGHT);
-        toolBar.setStyle("-fx-spacing: 20px");
+        toolBar.setStyle("-fx-spacing: 40px");
 
         ScrollPane scrollPane = new ScrollPane();
         GridPane gridPane = new GridPane();
