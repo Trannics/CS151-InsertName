@@ -6,6 +6,7 @@ This is an overview of the project structure and a breakdown of how various clas
 * '**Post**' class now allows the program to return a sorted list of comments associated with a post based on either date created or karma
 * '**User**' class now allows the program to return a sorted list of posts and comments created by a user based on either data created or karma
 * '**Comment**' class now allows the program to return a sorted list of sub comments of a comment based on either date created or karma
+* '**JavaFX**' class adds a UI which includes a Login Scene, Home Scene, Post Creation Scene, Detailed Post View Scene, and Navigation of these scenes
 * Code logic fixes (Bug fixes)
 * JUnit Test Cases are now available in '**RedditCloneTest**'
 
@@ -55,6 +56,14 @@ Look for '**NEW**' to find newly created or updated methods for the most recent 
 * '**getKarma**' calculates and returns the comment's karma based on its upvotes and downvotes.
 * ‘**deleteComment**’ method removes a comment from the system
 * **NEW** - '**getSubCommentsByDate**' and '**getSubCommentsByKarma**' methods get a sorted list of sub comments based on either date or karma
+
+### 'JavaFX'
+* Manages tthe graphical user interface using JavaFX
+* User Authenticatiion: Provides a graphical user interface for user login and creation
+* Post and Comment Presentation: Displays post and comments with voting mechanisms and karma
+* User Interaction: Allows users to actively upvote and downvote posts and comments
+* User Profile Display: Shows user profiles with information such as karma, posts, and comments
+* Menu Nacigation: Manages the navigation between different scenes such as the homepage and detailed post/comment views
 
 ## Overall Driving Class
 '**RedditClone**' is the overall driving class that manages the core functionalities, including user authentication, content creation, and voting. This class provides methods for user login, logout, and creating, deleting, and interacting with posts and comments.
