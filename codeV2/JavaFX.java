@@ -222,18 +222,20 @@ public class JavaFX extends Application {
         }
 
         Button createPost = new Button("Create Post");
-
+        Button viewUsers = new Button("View All Users");
+        Button sortTime = new Button("Sort: Date");
+        Button sortUser = new Button("Sort: Karma");
         Button login = new Button("Login");
         Button logoff = new Button("Log off");
 
-        toolBar.getItems().addAll(redditText, menuBarVar, userText, createPost);
+        toolBar.getItems().addAll(redditText, menuBarVar, userText, createPost, viewUsers, sortTime, sortUser);
         if (redditClone.getLoggedInUser() != null) {
             toolBar.getItems().add(logoff);
         } else {
             toolBar.getItems().add(login);
         }
         userText.setTextAlignment(TextAlignment.RIGHT);
-        toolBar.setStyle("-fx-spacing: 60px");
+        toolBar.setStyle("-fx-spacing: 20px");
 
         ScrollPane scrollPane = new ScrollPane();
         GridPane gridPane = new GridPane();
@@ -272,6 +274,298 @@ public class JavaFX extends Application {
         logoff.setOnMouseClicked(event -> {
             redditClone.logout();
             stage.setScene(createSceneHome());
+        });
+
+        sortUser.setOnMouseClicked(event -> {
+            stage.setScene(createSceneHomeByKarma());
+        });
+
+        viewUsers.setOnMouseClicked(event -> {
+            stage.setScene(createSceneUsers());
+        });
+
+        scrollPane.setContent(gridPane);
+        layout.setCenter(scrollPane);
+        layout.setTop(toolBar);
+        gridPane.setStyle("-fx-background-color: Gray");
+
+        return new Scene(layout, 600, 500);
+    }
+
+    private Scene createSceneHomeByKarma() {
+        BorderPane layout = new BorderPane();
+        ToolBar toolBar = new ToolBar();
+
+        HBox menuContainer = new HBox();
+        Menu postList = new Menu("All Posts");
+        for(int i = 0; i < redditClone.getPostsByDate().size(); i++) {
+            Post post = redditClone.getPostsByDate().get(i);
+            MenuItem redditPost = new MenuItem(post.getTitle().substring(0, Math.min(10, post.getTitle().length())) + "...");
+            postList.getItems().addAll(redditPost);
+
+            redditPost.setOnAction(event -> {
+                stage.setScene(createSceneDetailed(post));
+            });
+        }
+        menuContainer.setPadding(new Insets(0, 0, 0, 0));
+
+        MenuBar menuBarVar = new MenuBar();
+        menuBarVar.getMenus().add(postList);
+
+        Text redditText = new Text();
+        redditText.setText("RedditClone");
+        menuContainer.setTranslateX(5);
+
+        this.userText = new Text();
+        if(redditClone.getLoggedInUser() != null) {
+            userText.setText("Hi, " + redditClone.getLoggedInUser().getUsername());
+        } else {
+            userText.setText("Guest");
+        }
+
+        Button createPost = new Button("Create Post");
+        Button viewUsers = new Button("View All Users");
+        Button sortTime = new Button("Sort: Date");
+        Button sortUser = new Button("Sort: Karma");
+        Button login = new Button("Login");
+        Button logoff = new Button("Log off");
+
+        toolBar.getItems().addAll(redditText, menuBarVar, userText, createPost, viewUsers, sortTime, sortUser);
+        if (redditClone.getLoggedInUser() != null) {
+            toolBar.getItems().add(logoff);
+        } else {
+            toolBar.getItems().add(login);
+        }
+        userText.setTextAlignment(TextAlignment.RIGHT);
+        toolBar.setStyle("-fx-spacing: 20px");
+
+        ScrollPane scrollPane = new ScrollPane();
+        GridPane gridPane = new GridPane();
+        gridPane.setVgap(5);
+        gridPane.setAlignment(Pos.TOP_CENTER);
+
+        for (int i = 0; i < redditClone.getPostsByKarma().size(); i++) {
+            Post currentPost = redditClone.getPostsByKarma().get(i);
+            VBox visualPost = createPostVisual(currentPost);
+            VBox containerVote = createPostKarmaContainer(currentPost);
+
+            gridPane.add(containerVote, 0, i);
+            gridPane.add(visualPost, 1, i);
+
+            visualPost.setOnMouseClicked(event -> {
+                detailPage = createSceneDetailed(currentPost);
+                switchScenes(detailPage);
+                event.consume();
+            });
+        }
+
+        createPost.setOnMouseClicked(event -> {
+            if(redditClone.getLoggedInUser() != null) {
+                stage.setScene(createScenePostCreation());
+            } else {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Please log in first before continuing.");
+                a.show();
+            }
+        });
+
+        login.setOnMouseClicked(event -> {
+            stage.setScene(createSceneLogin());
+        });
+
+        logoff.setOnMouseClicked(event -> {
+            redditClone.logout();
+            stage.setScene(createSceneHome());
+        });
+
+        sortTime.setOnMouseClicked(event -> {
+            stage.setScene(createSceneHome());
+        });
+
+        viewUsers.setOnMouseClicked(event -> {
+            stage.setScene(createSceneUsers());
+        });
+
+        scrollPane.setContent(gridPane);
+        layout.setCenter(scrollPane);
+        layout.setTop(toolBar);
+        gridPane.setStyle("-fx-background-color: Gray");
+
+        return new Scene(layout, 600, 500);
+    }
+
+    private Scene createSceneUsers() {
+        BorderPane layout = new BorderPane();
+        ToolBar toolBar = new ToolBar();
+
+        HBox menuContainer = new HBox();
+        Menu postList = new Menu("All Posts");
+        for(int i = 0; i < redditClone.getPostsByDate().size(); i++) {
+            Post post = redditClone.getPostsByDate().get(i);
+            MenuItem redditPost = new MenuItem(post.getTitle().substring(0, Math.min(10, post.getTitle().length())) + "...");
+            postList.getItems().addAll(redditPost);
+
+            redditPost.setOnAction(event -> {
+                stage.setScene(createSceneDetailed(post));
+            });
+        }
+        menuContainer.setPadding(new Insets(0, 0, 0, 0));
+
+        MenuBar menuBarVar = new MenuBar();
+        menuBarVar.getMenus().add(postList);
+
+        Text redditText = new Text();
+        redditText.setText("RedditClone");
+        menuContainer.setTranslateX(5);
+
+        this.userText = new Text();
+        if(redditClone.getLoggedInUser() != null) {
+            userText.setText("Hi, " + redditClone.getLoggedInUser().getUsername());
+        } else {
+            userText.setText("Guest");
+        }
+
+        Button createPost = new Button("Create Post");
+        Button sortTime = new Button("Sort: Date");
+        Button sortUser = new Button("Sort: Karma");
+        Button login = new Button("Login");
+        Button logoff = new Button("Log off");
+
+        toolBar.getItems().addAll(redditText, menuBarVar, userText, createPost, sortTime, sortUser);
+        if (redditClone.getLoggedInUser() != null) {
+            toolBar.getItems().add(logoff);
+        } else {
+            toolBar.getItems().add(login);
+        }
+        userText.setTextAlignment(TextAlignment.RIGHT);
+        toolBar.setStyle("-fx-spacing: 20px");
+
+        ScrollPane scrollPane = new ScrollPane();
+        GridPane gridPane = new GridPane();
+        gridPane.setVgap(5);
+        gridPane.setAlignment(Pos.TOP_CENTER);
+
+        for (int i = 0; i < redditClone.getUsersByDate().size(); i++) {
+            User currentUser = redditClone.getUsersByDate().get(i);
+            VBox visualPost = createUserVisuals(currentUser);
+            VBox containerVote = createUserKarmaContainer(currentUser);
+
+            gridPane.add(containerVote, 0, i);
+            gridPane.add(visualPost, 1, i);
+        }
+
+        createPost.setOnMouseClicked(event -> {
+            if(redditClone.getLoggedInUser() != null) {
+                stage.setScene(createScenePostCreation());
+            } else {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Please log in first before continuing.");
+                a.show();
+            }
+        });
+
+        login.setOnMouseClicked(event -> {
+            stage.setScene(createSceneLogin());
+        });
+
+        logoff.setOnMouseClicked(event -> {
+            redditClone.logout();
+            stage.setScene(createSceneHome());
+        });
+
+        sortUser.setOnMouseClicked(event -> {
+            stage.setScene(createSceneUsersByKarma());
+        });
+
+        scrollPane.setContent(gridPane);
+        layout.setCenter(scrollPane);
+        layout.setTop(toolBar);
+        gridPane.setStyle("-fx-background-color: Gray");
+
+        return new Scene(layout, 600, 500);
+    }
+
+    private Scene createSceneUsersByKarma() {
+        BorderPane layout = new BorderPane();
+        ToolBar toolBar = new ToolBar();
+
+        HBox menuContainer = new HBox();
+        Menu postList = new Menu("All Posts");
+        for(int i = 0; i < redditClone.getPostsByDate().size(); i++) {
+            Post post = redditClone.getPostsByDate().get(i);
+            MenuItem redditPost = new MenuItem(post.getTitle().substring(0, Math.min(10, post.getTitle().length())) + "...");
+            postList.getItems().addAll(redditPost);
+
+            redditPost.setOnAction(event -> {
+                stage.setScene(createSceneDetailed(post));
+            });
+        }
+        menuContainer.setPadding(new Insets(0, 0, 0, 0));
+
+        MenuBar menuBarVar = new MenuBar();
+        menuBarVar.getMenus().add(postList);
+
+        Text redditText = new Text();
+        redditText.setText("RedditClone");
+        menuContainer.setTranslateX(5);
+
+        this.userText = new Text();
+        if(redditClone.getLoggedInUser() != null) {
+            userText.setText("Hi, " + redditClone.getLoggedInUser().getUsername());
+        } else {
+            userText.setText("Guest");
+        }
+
+        Button createPost = new Button("Create Post");
+        Button sortTime = new Button("Sort: Date");
+        Button sortUser = new Button("Sort: Karma");
+        Button login = new Button("Login");
+        Button logoff = new Button("Log off");
+
+        toolBar.getItems().addAll(redditText, menuBarVar, userText, createPost, sortTime, sortUser);
+        if (redditClone.getLoggedInUser() != null) {
+            toolBar.getItems().add(logoff);
+        } else {
+            toolBar.getItems().add(login);
+        }
+        userText.setTextAlignment(TextAlignment.RIGHT);
+        toolBar.setStyle("-fx-spacing: 20px");
+
+        ScrollPane scrollPane = new ScrollPane();
+        GridPane gridPane = new GridPane();
+        gridPane.setVgap(5);
+        gridPane.setAlignment(Pos.TOP_CENTER);
+
+        for (int i = 0; i < redditClone.getUsersByKarma().size(); i++) {
+            User currentUser = redditClone.getUsersByKarma().get(i);
+            VBox visualPost = createUserVisuals(currentUser);
+            VBox containerVote = createUserKarmaContainer(currentUser);
+
+            gridPane.add(containerVote, 0, i);
+            gridPane.add(visualPost, 1, i);
+        }
+
+        createPost.setOnMouseClicked(event -> {
+            if(redditClone.getLoggedInUser() != null) {
+                stage.setScene(createScenePostCreation());
+            } else {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Please log in first before continuing.");
+                a.show();
+            }
+        });
+
+        login.setOnMouseClicked(event -> {
+            stage.setScene(createSceneLogin());
+        });
+
+        logoff.setOnMouseClicked(event -> {
+            redditClone.logout();
+            stage.setScene(createSceneHome());
+        });
+
+        sortTime.setOnMouseClicked(event -> {
+            stage.setScene(createSceneUsers());
         });
 
         scrollPane.setContent(gridPane);
@@ -403,7 +697,7 @@ public class JavaFX extends Application {
         });
 
         createPost.setOnMouseClicked(event -> {
-            if(redditClone.getLoggedInUser() != null && !commentBox.getText().isEmpty()) {
+            if(redditClone.getLoggedInUser() != null) {
                 stage.setScene(createScenePostCreation());
             } else {
                 Alert a = new Alert(Alert.AlertType.ERROR);
@@ -601,6 +895,17 @@ public class JavaFX extends Application {
         return appContent;
     }
 
+    private VBox createUserVisuals(User user) {
+        VBox appContent = new VBox();
+        appContent.setPadding(new Insets(20));
+        appContent.setSpacing(7);
+        String username = user.getUsername();
+        Text author = new Text(username);
+        appContent.getChildren().add(author);
+        appContent.setStyle("-fx-background-color: white");
+        return appContent;
+    }
+
     private VBox createPostKarmaContainer(Post currentPost) {
         VBox containerVote = new VBox();
         containerVote.setSpacing(7);
@@ -694,6 +999,22 @@ public class JavaFX extends Application {
             redditClone.downvoteComment(currentComment);
             stage.setScene(createSceneDetailed(currentPost));
         });
+        return containerVote;
+    }
+
+    private VBox createUserKarmaContainer(User user) {
+        VBox containerVote = new VBox();
+        containerVote.setSpacing(7);
+        containerVote.setPadding(new Insets(15));
+        Text karma = new Text(String.valueOf(user.getKarma()));
+        karma.setTextAlignment(TextAlignment.CENTER);
+        karma.setStyle("-fx-text-color: white");
+
+        containerVote.setAlignment(Pos.TOP_CENTER);
+        containerVote.setPadding(new Insets(35, 0, 0, 15));
+        containerVote.setStyle("-fx-background-color: white");
+
+        containerVote.getChildren().addAll(karma);
         return containerVote;
     }
 

@@ -68,13 +68,17 @@ Look for '**NEW**' to find newly created or updated methods for the most recent 
 * Manages the graphical user interface using JavaFX
 * User Profile Display: Shows user profiles with information such as karma, posts, and comments
 * User Interaction: Allows users to actively upvote and downvote posts and comments
-* **NEW** - '**createSceneLogin**' Provides a graphical user interface for user login and creation
-* **NEW** - '**createSceneDetailed**' and  '**createCommentVisual**' Displays post and comments with voting mechanisms and karma
-* **NEW** - '**createSceneDetailedCommentByKarma**' shows detailed comment view with karma
-* **NEW** - '**createScenePostCreation**' creates scene for users to create posts
+* **NEW** - '**createSceneLogin**' provides a graphical user interface for user login and creation
+* **NEW** - '**createScenePostCreation**' provides a graphical user interface to make posts
 * **NEW** - '**createSceneHome**' creates scene for homepage
-* **NEW** - '**createPostVisual**' creates Vbox for posts
-* **NEW** - '**createCommentVisual**' creates Vbox for comments
+* **NEW** - '**createSceneUsers**' creates scene to display all existing users
+* **NEW** - '**createSceneDetailed**' creates scene for single post and its details
+* **NEW** - '**createPostVisual**' creates VBox for posts
+* **NEW** - '**createCommentVisual**' creates VBox for comments
+* **NEW** - '**createUsersVisuals**' creates VBox for users
+* **NEW** - '**createPostKarmaContainer**' creates VBox for post's karma
+* **NEW** - '**createCommentKarmaContainer**' creates VBox for comment's karma
+* **NEW** - '**createUserKarmaContainer**' creates VBox for user's karma
 * **NEW** - '**switchScenes**' method to navigate between scenes
 
 
